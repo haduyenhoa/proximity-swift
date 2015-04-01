@@ -1,0 +1,439 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ED955BD01ACCA12700838395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED955BCF1ACCA12700838395 /* AppDelegate.swift */; };
+		ED955BD31ACCA12700838395 /* MyMac.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED955BD11ACCA12700838395 /* MyMac.xcdatamodeld */; };
+		ED955BD51ACCA12700838395 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED955BD41ACCA12700838395 /* ViewController.swift */; };
+		ED955BD81ACCA12700838395 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED955BD61ACCA12700838395 /* Main.storyboard */; };
+		ED955BDA1ACCA12700838395 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED955BD91ACCA12700838395 /* Images.xcassets */; };
+		ED955BDD1ACCA12700838395 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED955BDB1ACCA12700838395 /* LaunchScreen.xib */; };
+		ED955BE91ACCA12700838395 /* MyMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED955BE81ACCA12700838395 /* MyMacTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ED955BE31ACCA12700838395 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED955BC21ACCA12700838395 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED955BC91ACCA12700838395;
+			remoteInfo = MyMac;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ED955BCA1ACCA12700838395 /* MyMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED955BCE1ACCA12700838395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED955BCF1ACCA12700838395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ED955BD21ACCA12700838395 /* MyMac.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyMac.xcdatamodel; sourceTree = "<group>"; };
+		ED955BD41ACCA12700838395 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ED955BD71ACCA12700838395 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ED955BD91ACCA12700838395 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		ED955BDC1ACCA12700838395 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		ED955BE21ACCA12700838395 /* MyMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED955BE71ACCA12700838395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED955BE81ACCA12700838395 /* MyMacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMacTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ED955BC71ACCA12700838395 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED955BDF1ACCA12700838395 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ED955BC11ACCA12700838395 = {
+			isa = PBXGroup;
+			children = (
+				ED955BCC1ACCA12700838395 /* MyMac */,
+				ED955BE51ACCA12700838395 /* MyMacTests */,
+				ED955BCB1ACCA12700838395 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ED955BCB1ACCA12700838395 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED955BCA1ACCA12700838395 /* MyMac.app */,
+				ED955BE21ACCA12700838395 /* MyMacTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED955BCC1ACCA12700838395 /* MyMac */ = {
+			isa = PBXGroup;
+			children = (
+				ED955BCF1ACCA12700838395 /* AppDelegate.swift */,
+				ED955BD41ACCA12700838395 /* ViewController.swift */,
+				ED955BD61ACCA12700838395 /* Main.storyboard */,
+				ED955BD91ACCA12700838395 /* Images.xcassets */,
+				ED955BDB1ACCA12700838395 /* LaunchScreen.xib */,
+				ED955BD11ACCA12700838395 /* MyMac.xcdatamodeld */,
+				ED955BCD1ACCA12700838395 /* Supporting Files */,
+			);
+			path = MyMac;
+			sourceTree = "<group>";
+		};
+		ED955BCD1ACCA12700838395 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ED955BCE1ACCA12700838395 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ED955BE51ACCA12700838395 /* MyMacTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED955BE81ACCA12700838395 /* MyMacTests.swift */,
+				ED955BE61ACCA12700838395 /* Supporting Files */,
+			);
+			path = MyMacTests;
+			sourceTree = "<group>";
+		};
+		ED955BE61ACCA12700838395 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ED955BE71ACCA12700838395 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ED955BC91ACCA12700838395 /* MyMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED955BEC1ACCA12700838395 /* Build configuration list for PBXNativeTarget "MyMac" */;
+			buildPhases = (
+				ED955BC61ACCA12700838395 /* Sources */,
+				ED955BC71ACCA12700838395 /* Frameworks */,
+				ED955BC81ACCA12700838395 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyMac;
+			productName = MyMac;
+			productReference = ED955BCA1ACCA12700838395 /* MyMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ED955BE11ACCA12700838395 /* MyMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED955BEF1ACCA12700838395 /* Build configuration list for PBXNativeTarget "MyMacTests" */;
+			buildPhases = (
+				ED955BDE1ACCA12700838395 /* Sources */,
+				ED955BDF1ACCA12700838395 /* Frameworks */,
+				ED955BE01ACCA12700838395 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED955BE41ACCA12700838395 /* PBXTargetDependency */,
+			);
+			name = MyMacTests;
+			productName = MyMacTests;
+			productReference = ED955BE21ACCA12700838395 /* MyMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ED955BC21ACCA12700838395 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Duyen Hoa Ha";
+				TargetAttributes = {
+					ED955BC91ACCA12700838395 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					ED955BE11ACCA12700838395 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = ED955BC91ACCA12700838395;
+					};
+				};
+			};
+			buildConfigurationList = ED955BC51ACCA12700838395 /* Build configuration list for PBXProject "MyMac" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ED955BC11ACCA12700838395;
+			productRefGroup = ED955BCB1ACCA12700838395 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ED955BC91ACCA12700838395 /* MyMac */,
+				ED955BE11ACCA12700838395 /* MyMacTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ED955BC81ACCA12700838395 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED955BD81ACCA12700838395 /* Main.storyboard in Resources */,
+				ED955BDD1ACCA12700838395 /* LaunchScreen.xib in Resources */,
+				ED955BDA1ACCA12700838395 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED955BE01ACCA12700838395 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ED955BC61ACCA12700838395 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED955BD51ACCA12700838395 /* ViewController.swift in Sources */,
+				ED955BD01ACCA12700838395 /* AppDelegate.swift in Sources */,
+				ED955BD31ACCA12700838395 /* MyMac.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED955BDE1ACCA12700838395 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED955BE91ACCA12700838395 /* MyMacTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ED955BE41ACCA12700838395 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED955BC91ACCA12700838395 /* MyMac */;
+			targetProxy = ED955BE31ACCA12700838395 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ED955BD61ACCA12700838395 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED955BD71ACCA12700838395 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ED955BDB1ACCA12700838395 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED955BDC1ACCA12700838395 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ED955BEA1ACCA12700838395 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ED955BEB1ACCA12700838395 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ED955BED1ACCA12700838395 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MyMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		ED955BEE1ACCA12700838395 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MyMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		ED955BF01ACCA12700838395 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MyMacTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyMac.app/MyMac";
+			};
+			name = Debug;
+		};
+		ED955BF11ACCA12700838395 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MyMacTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyMac.app/MyMac";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ED955BC51ACCA12700838395 /* Build configuration list for PBXProject "MyMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED955BEA1ACCA12700838395 /* Debug */,
+				ED955BEB1ACCA12700838395 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED955BEC1ACCA12700838395 /* Build configuration list for PBXNativeTarget "MyMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED955BED1ACCA12700838395 /* Debug */,
+				ED955BEE1ACCA12700838395 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		ED955BEF1ACCA12700838395 /* Build configuration list for PBXNativeTarget "MyMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED955BF01ACCA12700838395 /* Debug */,
+				ED955BF11ACCA12700838395 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		ED955BD11ACCA12700838395 /* MyMac.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				ED955BD21ACCA12700838395 /* MyMac.xcdatamodel */,
+			);
+			currentVersion = ED955BD21ACCA12700838395 /* MyMac.xcdatamodel */;
+			path = MyMac.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = ED955BC21ACCA12700838395 /* Project object */;
+}
