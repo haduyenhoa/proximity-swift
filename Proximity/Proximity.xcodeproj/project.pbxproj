@@ -1,0 +1,452 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FD5F11611ACAEF60001F7639 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5F11601ACAEF60001F7639 /* IOKit.framework */; };
+		FDBC94601ACAA1CC007A2F43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBC945F1ACAA1CC007A2F43 /* AppDelegate.swift */; };
+		FDBC94621ACAA1CC007A2F43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBC94611ACAA1CC007A2F43 /* ViewController.swift */; };
+		FDBC94641ACAA1CD007A2F43 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDBC94631ACAA1CD007A2F43 /* Images.xcassets */; };
+		FDBC94671ACAA1CD007A2F43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDBC94651ACAA1CD007A2F43 /* Main.storyboard */; };
+		FDBC94731ACAA1CD007A2F43 /* ProximityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBC94721ACAA1CD007A2F43 /* ProximityTests.swift */; };
+		FDBC947E1ACAA4B2007A2F43 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDBC947C1ACAA4B2007A2F43 /* IOBluetooth.framework */; };
+		FDBC947F1ACAA4B2007A2F43 /* IOBluetoothUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDBC947D1ACAA4B2007A2F43 /* IOBluetoothUI.framework */; };
+		FDBC94821ACAC30E007A2F43 /* inRange.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBC94801ACAC30E007A2F43 /* inRange.png */; };
+		FDBC94831ACAC30E007A2F43 /* outRange.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBC94811ACAC30E007A2F43 /* outRange.png */; };
+		FDBC94861ACAC38E007A2F43 /* inRangeAlt.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBC94841ACAC38E007A2F43 /* inRangeAlt.png */; };
+		FDBC94871ACAC38E007A2F43 /* outRangeAlt.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBC94851ACAC38E007A2F43 /* outRangeAlt.png */; };
+		FDBC94891ACAD51A007A2F43 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDBC94881ACAD51A007A2F43 /* AppKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FDBC946D1ACAA1CD007A2F43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDBC94521ACAA1CC007A2F43 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FDBC94591ACAA1CC007A2F43;
+			remoteInfo = Proximity;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FD5F11601ACAEF60001F7639 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		FD5F11621ACAF02B001F7639 /* Proximity-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Proximity-Bridging-Header.h"; sourceTree = "<group>"; };
+		FDBC945A1ACAA1CC007A2F43 /* Proximity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Proximity.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDBC945E1ACAA1CC007A2F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDBC945F1ACAA1CC007A2F43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FDBC94611ACAA1CC007A2F43 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FDBC94631ACAA1CD007A2F43 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FDBC94661ACAA1CD007A2F43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FDBC946C1ACAA1CD007A2F43 /* ProximityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProximityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDBC94711ACAA1CD007A2F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDBC94721ACAA1CD007A2F43 /* ProximityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProximityTests.swift; sourceTree = "<group>"; };
+		FDBC947C1ACAA4B2007A2F43 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
+		FDBC947D1ACAA4B2007A2F43 /* IOBluetoothUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetoothUI.framework; path = System/Library/Frameworks/IOBluetoothUI.framework; sourceTree = SDKROOT; };
+		FDBC94801ACAC30E007A2F43 /* inRange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inRange.png; sourceTree = "<group>"; };
+		FDBC94811ACAC30E007A2F43 /* outRange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outRange.png; sourceTree = "<group>"; };
+		FDBC94841ACAC38E007A2F43 /* inRangeAlt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inRangeAlt.png; sourceTree = "<group>"; };
+		FDBC94851ACAC38E007A2F43 /* outRangeAlt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outRangeAlt.png; sourceTree = "<group>"; };
+		FDBC94881ACAD51A007A2F43 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FDBC94571ACAA1CC007A2F43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD5F11611ACAEF60001F7639 /* IOKit.framework in Frameworks */,
+				FDBC94891ACAD51A007A2F43 /* AppKit.framework in Frameworks */,
+				FDBC947E1ACAA4B2007A2F43 /* IOBluetooth.framework in Frameworks */,
+				FDBC947F1ACAA4B2007A2F43 /* IOBluetoothUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDBC94691ACAA1CD007A2F43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FDBC94511ACAA1CC007A2F43 = {
+			isa = PBXGroup;
+			children = (
+				FD5F11601ACAEF60001F7639 /* IOKit.framework */,
+				FDBC94881ACAD51A007A2F43 /* AppKit.framework */,
+				FDBC94801ACAC30E007A2F43 /* inRange.png */,
+				FDBC94841ACAC38E007A2F43 /* inRangeAlt.png */,
+				FDBC94851ACAC38E007A2F43 /* outRangeAlt.png */,
+				FDBC94811ACAC30E007A2F43 /* outRange.png */,
+				FDBC947C1ACAA4B2007A2F43 /* IOBluetooth.framework */,
+				FDBC947D1ACAA4B2007A2F43 /* IOBluetoothUI.framework */,
+				FDBC945C1ACAA1CC007A2F43 /* Proximity */,
+				FDBC946F1ACAA1CD007A2F43 /* ProximityTests */,
+				FDBC945B1ACAA1CC007A2F43 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FDBC945B1ACAA1CC007A2F43 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FDBC945A1ACAA1CC007A2F43 /* Proximity.app */,
+				FDBC946C1ACAA1CD007A2F43 /* ProximityTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FDBC945C1ACAA1CC007A2F43 /* Proximity */ = {
+			isa = PBXGroup;
+			children = (
+				FDBC945F1ACAA1CC007A2F43 /* AppDelegate.swift */,
+				FDBC94611ACAA1CC007A2F43 /* ViewController.swift */,
+				FDBC94631ACAA1CD007A2F43 /* Images.xcassets */,
+				FDBC94651ACAA1CD007A2F43 /* Main.storyboard */,
+				FDBC945D1ACAA1CC007A2F43 /* Supporting Files */,
+				FD5F11621ACAF02B001F7639 /* Proximity-Bridging-Header.h */,
+			);
+			path = Proximity;
+			sourceTree = "<group>";
+		};
+		FDBC945D1ACAA1CC007A2F43 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FDBC945E1ACAA1CC007A2F43 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FDBC946F1ACAA1CD007A2F43 /* ProximityTests */ = {
+			isa = PBXGroup;
+			children = (
+				FDBC94721ACAA1CD007A2F43 /* ProximityTests.swift */,
+				FDBC94701ACAA1CD007A2F43 /* Supporting Files */,
+			);
+			path = ProximityTests;
+			sourceTree = "<group>";
+		};
+		FDBC94701ACAA1CD007A2F43 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FDBC94711ACAA1CD007A2F43 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FDBC94591ACAA1CC007A2F43 /* Proximity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDBC94761ACAA1CD007A2F43 /* Build configuration list for PBXNativeTarget "Proximity" */;
+			buildPhases = (
+				FDBC94561ACAA1CC007A2F43 /* Sources */,
+				FDBC94571ACAA1CC007A2F43 /* Frameworks */,
+				FDBC94581ACAA1CC007A2F43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Proximity;
+			productName = Proximity;
+			productReference = FDBC945A1ACAA1CC007A2F43 /* Proximity.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FDBC946B1ACAA1CD007A2F43 /* ProximityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDBC94791ACAA1CD007A2F43 /* Build configuration list for PBXNativeTarget "ProximityTests" */;
+			buildPhases = (
+				FDBC94681ACAA1CD007A2F43 /* Sources */,
+				FDBC94691ACAA1CD007A2F43 /* Frameworks */,
+				FDBC946A1ACAA1CD007A2F43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FDBC946E1ACAA1CD007A2F43 /* PBXTargetDependency */,
+			);
+			name = ProximityTests;
+			productName = ProximityTests;
+			productReference = FDBC946C1ACAA1CD007A2F43 /* ProximityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FDBC94521ACAA1CC007A2F43 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Rayonnance Technologies";
+				TargetAttributes = {
+					FDBC94591ACAA1CC007A2F43 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					FDBC946B1ACAA1CD007A2F43 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = FDBC94591ACAA1CC007A2F43;
+					};
+				};
+			};
+			buildConfigurationList = FDBC94551ACAA1CC007A2F43 /* Build configuration list for PBXProject "Proximity" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FDBC94511ACAA1CC007A2F43;
+			productRefGroup = FDBC945B1ACAA1CC007A2F43 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FDBC94591ACAA1CC007A2F43 /* Proximity */,
+				FDBC946B1ACAA1CD007A2F43 /* ProximityTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FDBC94581ACAA1CC007A2F43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDBC94831ACAC30E007A2F43 /* outRange.png in Resources */,
+				FDBC94641ACAA1CD007A2F43 /* Images.xcassets in Resources */,
+				FDBC94821ACAC30E007A2F43 /* inRange.png in Resources */,
+				FDBC94861ACAC38E007A2F43 /* inRangeAlt.png in Resources */,
+				FDBC94871ACAC38E007A2F43 /* outRangeAlt.png in Resources */,
+				FDBC94671ACAA1CD007A2F43 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDBC946A1ACAA1CD007A2F43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FDBC94561ACAA1CC007A2F43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDBC94621ACAA1CC007A2F43 /* ViewController.swift in Sources */,
+				FDBC94601ACAA1CC007A2F43 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDBC94681ACAA1CD007A2F43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDBC94731ACAA1CD007A2F43 /* ProximityTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FDBC946E1ACAA1CD007A2F43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FDBC94591ACAA1CC007A2F43 /* Proximity */;
+			targetProxy = FDBC946D1ACAA1CD007A2F43 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FDBC94651ACAA1CD007A2F43 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FDBC94661ACAA1CD007A2F43 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FDBC94741ACAA1CD007A2F43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FDBC94751ACAA1CD007A2F43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FDBC94771ACAA1CD007A2F43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Proximity/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Proximity/Proximity-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		FDBC94781ACAA1CD007A2F43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Proximity/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Proximity/Proximity-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		FDBC947A1ACAA1CD007A2F43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ProximityTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Proximity.app/Contents/MacOS/Proximity";
+			};
+			name = Debug;
+		};
+		FDBC947B1ACAA1CD007A2F43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ProximityTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Proximity.app/Contents/MacOS/Proximity";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FDBC94551ACAA1CC007A2F43 /* Build configuration list for PBXProject "Proximity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDBC94741ACAA1CD007A2F43 /* Debug */,
+				FDBC94751ACAA1CD007A2F43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDBC94761ACAA1CD007A2F43 /* Build configuration list for PBXNativeTarget "Proximity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDBC94771ACAA1CD007A2F43 /* Debug */,
+				FDBC94781ACAA1CD007A2F43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDBC94791ACAA1CD007A2F43 /* Build configuration list for PBXNativeTarget "ProximityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDBC947A1ACAA1CD007A2F43 /* Debug */,
+				FDBC947B1ACAA1CD007A2F43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FDBC94521ACAA1CC007A2F43 /* Project object */;
+}
