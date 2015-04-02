@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FD5F11611ACAEF60001F7639 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5F11601ACAEF60001F7639 /* IOKit.framework */; };
+		FD8243751ACD760000122724 /* LEBluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8243741ACD760000122724 /* LEBluetoothManager.swift */; };
 		FDBC94601ACAA1CC007A2F43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBC945F1ACAA1CC007A2F43 /* AppDelegate.swift */; };
 		FDBC94621ACAA1CC007A2F43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBC94611ACAA1CC007A2F43 /* ViewController.swift */; };
 		FDBC94641ACAA1CD007A2F43 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDBC94631ACAA1CD007A2F43 /* Images.xcassets */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		FD5F11601ACAEF60001F7639 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		FD5F11621ACAF02B001F7639 /* Proximity-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Proximity-Bridging-Header.h"; sourceTree = "<group>"; };
+		FD8243741ACD760000122724 /* LEBluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LEBluetoothManager.swift; sourceTree = "<group>"; };
 		FDBC945A1ACAA1CC007A2F43 /* Proximity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Proximity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDBC945E1ACAA1CC007A2F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDBC945F1ACAA1CC007A2F43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		FDBC945C1ACAA1CC007A2F43 /* Proximity */ = {
 			isa = PBXGroup;
 			children = (
+				FD8243741ACD760000122724 /* LEBluetoothManager.swift */,
 				FDBC945F1ACAA1CC007A2F43 /* AppDelegate.swift */,
 				FDBC94611ACAA1CC007A2F43 /* ViewController.swift */,
 				FDBC94631ACAA1CD007A2F43 /* Images.xcassets */,
@@ -244,6 +247,7 @@
 			files = (
 				FDBC94621ACAA1CC007A2F43 /* ViewController.swift in Sources */,
 				FDBC94601ACAA1CC007A2F43 /* AppDelegate.swift in Sources */,
+				FD8243751ACD760000122724 /* LEBluetoothManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

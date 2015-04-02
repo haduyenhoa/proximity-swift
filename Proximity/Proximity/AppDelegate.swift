@@ -9,6 +9,7 @@
 import Cocoa
 import IOBluetoothUI
 import IOKit
+import CoreBluetooth
 
 enum BPStatus {
     case InRange
@@ -17,7 +18,8 @@ enum BPStatus {
 
 @NSApplicationMain
 
-class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, CBPeripheralManagerDelegate {
+    var bluetoothManager : CBPeripheralManager?
     var device : IOBluetoothDevice?
     var password :String = ""
     var statusItem : NSStatusItem?
@@ -27,6 +29,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     
     var priorStatus : BPStatus =  BPStatus.OutRange
     var isRunningScript = false
+    var isCheckingRSSI = false
+    
     
     var enableMonitoring = false
     
@@ -150,11 +154,39 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
                     self.priorStatus = BPStatus.InRange
                 }
                 
-                if (self.screenIsLocked) {
-                    scriptObject = self.getInRangeScript()
+                if (self.screenIsLocked
+                    ) {
+                    var rssi: BluetoothHCIRSSIValue = 127 //valid range: -127 to +20
+                    if self.device != nil { //sur that device is not nil
+                        //try to connect
+                        if self.isCheckingRSSI {
+                            NSLog("Someone is checking the rssi")
+                        } else {
+                            if !(self.device!.isConnected()) {
+                                self.device?.openConnection()
+                            }
+                            
+                            if (self.device!.isConnected()) {
+                                rssi = self.device!.RSSI()
+                                self.device?.closeConnection()
+
+                            }
+                            
+                            NSLog("device rssi \(rssi))")
+                            if (rssi < -3 || rssi > 20) {
+                                NSLog("Bluetooth is not near by my Mac. Do nothing")
+                                self.isCheckingRSSI = false
+                                
+                            } else {
+                                NSLog("Device in Range")
+                                scriptObject = self.getInRangeScript()
+                                self.isCheckingRSSI = false
+                            }
+                        }
+                    } else {
+                        NSLog("Bizzare, cannot get device info")
+                    }
                 }
-                
-                NSLog("Device in Range")
             } else {
                 if self.priorStatus == BPStatus.InRange {
                     self.priorStatus = BPStatus.OutRange
@@ -162,11 +194,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
                 }
                 
                 if (!self.screenIsLocked) {
+                     NSLog("Device Out of range")
                     scriptObject = self.getOutRangeScript()
                 }
-                
-                
-                NSLog("Device Out of range")
+               
             }
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -174,7 +205,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
             })
             
             
-            
+//            return //do nothing
             
             if let _appleScript = scriptObject {
                 if self.isRunningScript {
@@ -226,5 +257,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         stopMonitoring()
         startMonitoring()
     }
+    
+    //MARK: CBPeripheralManager
+    func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager!) {
+        
+    }
+    
 }
 

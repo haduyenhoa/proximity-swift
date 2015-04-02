@@ -29,7 +29,7 @@ extension Character {
 
 class ViewController: NSViewController {
 
-    let CRYPT_KEY = "ThisIsMyCryptKey"
+    let CRYPT_KEY = "ThisIsMyCryptKey" //change your cryptkey
     
     @IBOutlet weak var cbShowPassword: NSButton!
     @IBOutlet weak var tfPassword: NSSecureTextField!
@@ -59,6 +59,7 @@ class ViewController: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
 
+        var imageArray = [NSData]()
         //verify device status
         
     }
@@ -141,6 +142,7 @@ class ViewController: NSViewController {
         password = password.map(encryptKey(CRYPT_KEY)) ?? ""
 //        let encryptedMessage = encryptKey(CRYPT_KEY)(message: username!)
         
+
         
         
         tfUsername.stringValue = username!
