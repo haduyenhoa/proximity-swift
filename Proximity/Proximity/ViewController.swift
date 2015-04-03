@@ -147,6 +147,7 @@ class ViewController: NSViewController {
         
         tfUsername.stringValue = username!
         tfPassword.stringValue = password!
+        _appDelegate!.username = username ?? "";
         _appDelegate!.password = password ?? ""; //defaults.stringForKey("password") ?? ""
     }
     
@@ -174,6 +175,7 @@ class ViewController: NSViewController {
         defaults.setObject(encryptedPassword, forKey: "password")
         defaults.synchronize()
         
+        _appDelegate!.username = tfUsername.stringValue ?? ""
         _appDelegate!.password = tfPassword.stringValue ?? ""
         
         if cbEnableMonitoring.state == NSOnState {

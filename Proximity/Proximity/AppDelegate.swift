@@ -22,6 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, CBPeripher
     var bluetoothManager : CBPeripheralManager?
     var device : IOBluetoothDevice?
     var password :String = ""
+    var username : String = ""
     var statusItem : NSStatusItem?
     var timer : NSTimer?
     var timerInterval : NSTimeInterval = 60
@@ -61,6 +62,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, CBPeripher
         return device != nil && device?.remoteNameRequest(nil) == kIOReturnSuccess
     }
     
+    //TODO: if screen unlocked but we are not in range, send a notification to apple watch?
     func screenLocked() {
         screenIsLocked = true
         NSLog("Screen is locked")
@@ -103,20 +105,43 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, CBPeripher
 //            + "key space\n"
 //            + "end tell\n"
 //            + "end tell\n"
-            + "tell application \"/System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app\" to quit\n"
+            +
+                "tell application \"/System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app\" to quit\n"
 //            + "tell application \"System Events\" to key code 53\n"
-
+                
             + "delay 4.0\n"
             + "tell application \"System Events\" to keystroke \"" + (password) + "\"\n"
             + "delay 0.5\n"
             + "tell application \"System Events\" to keystroke return\n"
             + "end run\n"
+
+            
+                /*
+            // got error: System Events got an error: Proximity is not allowed assistive access
+            
+            + "tell application \"System Events\" to tell process \"loginwindow\" to entire contents\n"
+            + "tell application \"System Events\" to tell process \"loginwindow\"\n"
+            + "tell window \"Login Panel\"\n"
+            + "if name of static text 1 is \""+username+"\" then\n"
+            + "set value of text field 1 to \""+password+"\"\n"
+            + "keystroke return\n"
+            + "end if\n"
+            + "end tell\n"
+            + "end tell\n"
+            + "end run\n"
+*/
         )
         
         return scriptObject!
     }
     
     func getOutRangeScript() -> NSAppleScript {
+        //put pac to sleep without any thing
+//        let pmsetTask = NSTask()
+//        pmsetTask.launchPath = "/usr/bin/pmset"
+//        pmsetTask.arguments = ["sleepnow"]
+//        pmsetTask.launch()
+        
         let scriptObject = NSAppleScript(source:
             "on run\n"
                 + "activate application \"/System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app\"\n"
