@@ -108,7 +108,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
             +
                 "tell application \"/System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app\" to quit\n"
 //            + "tell application \"System Events\" to key code 53\n"
-                
+
             + "delay 4.0\n"
             + "tell application \"System Events\" to keystroke \"" + (password) + "\"\n"
             + "delay 0.5\n"
@@ -143,9 +143,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 //        pmsetTask.launch()
         
         let scriptObject = NSAppleScript(source:
-            "on run\n"
-                + "activate application \"/System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app\"\n"
-                + "end run\n"
+            "on run \ntell application \"System Events\" \n" +
+            "start current screen saver \n" +
+            "end tell \n" +
+            "end run"
         )
         return scriptObject!
     }
@@ -232,9 +233,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 //            return //do nothing
             
             if let _appleScript = scriptObject {
-                if self.isRunningScript {
-                    return
-                }
+//                if self.isRunningScript {
+//                    return
+//                }
                 self.isRunningScript = true
                 //run
                 var error : NSDictionary?
