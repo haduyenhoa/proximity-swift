@@ -12,23 +12,23 @@ import IOKit
 import CoreBluetooth
 
 enum BPStatus {
-    case InRange
-    case OutRange
+    case inRange
+    case outRange
 }
 
 @NSApplicationMain
 
-class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, CBPeripheralManagerDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     var bluetoothManager : CBPeripheralManager?
     var device : IOBluetoothDevice?
     var password :String = ""
     var username : String = ""
     var statusItem : NSStatusItem?
-    var timer : NSTimer?
-    var timerInterval : NSTimeInterval = 60
+    var timer : Timer?
+    var timerInterval : TimeInterval = 60
     var screenIsLocked = false
     
-    var priorStatus : BPStatus =  BPStatus.OutRange
+    var priorStatus : BPStatus =  BPStatus.outRange
     var isRunningScript = false
     var isCheckingRSSI = false
     
@@ -37,23 +37,23 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, CBPeripher
     
     @IBOutlet weak var cbShowPassword: NSWindow!
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
         //load password to create script
-        let defaults = NSUserDefaults.standardUserDefaults()
-        password = defaults.stringForKey("password") ?? ""
+        let defaults = UserDefaults.standard
+        password = defaults.string(forKey: "password") ?? ""
         
-       (NSApplication.sharedApplication().windows.first as NSWindow).delegate = self
+        NSApplication.shared.windows.first?.delegate = self
         
-        let center = NSDistributedNotificationCenter.defaultCenter()
-        center.addObserver(self, selector: "screenLocked", name: "com.apple.screenIsLocked", object: nil)
-        center.addObserver(self, selector: "screenUnlocked", name: "com.apple.screenIsUnlocked", object: nil)
+        let center = DistributedNotificationCenter.default()
+        center.addObserver(self, selector: #selector(AppDelegate.screenLocked), name: NSNotification.Name(rawValue: "com.apple.screenIsLocked"), object: nil)
+        center.addObserver(self, selector: #selector(AppDelegate.screenUnlocked), name: NSNotification.Name(rawValue: "com.apple.screenIsUnlocked"), object: nil)
         
         createMenuBar()
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
 
@@ -63,12 +63,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, CBPeripher
     }
     
     //TODO: if screen unlocked but we are not in range, send a notification to apple watch?
-    func screenLocked() {
+    @objc func screenLocked() {
         screenIsLocked = true
         NSLog("Screen is locked")
     }
     
-    func screenUnlocked() {
+    @objc func screenUnlocked() {
         screenIsLocked = false
         NSLog("Screen is unlocked")
     }
@@ -79,24 +79,24 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, CBPeripher
         let menu = NSMenu()
         
         //button preferences
-        menu.addItemWithTitle("Preferences", action: "showPreferences", keyEquivalent: "")
+        menu.addItem(withTitle: "Preferences", action: #selector(AppDelegate.showPreferences), keyEquivalent: "")
         
         //btn quit
-        menu.addItemWithTitle("Quit", action: "terminate", keyEquivalent: "")
+        menu.addItem(withTitle: "Quit", action: #selector(AppDelegate.terminate), keyEquivalent: "")
         
-        statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
+        statusItem = NSStatusBar.system.statusItem(withLength: -1)
         
         statusItem?.highlightMode = true
         statusItem?.menu = menu
         
-        setMenuIcon(BPStatus.OutRange)
+        setMenuIcon(BPStatus.outRange)
     }
     
     func getInRangeScript() -> NSAppleScript {
         //wake up
         var assertionID = IOPMAssertionID()
-        let str : CFString = ""
-        let result =  IOPMAssertionDeclareUserActivity(str, kIOPMUserActiveLocal, &assertionID)
+        let str : CFString = "" as CFString
+        _ =  IOPMAssertionDeclareUserActivity(str, kIOPMUserActiveLocal, &assertionID)
         
         let scriptObject = NSAppleScript(source:
             "on run\n"
@@ -151,70 +151,69 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, CBPeripher
     }
     
     //MARK: Menu action
-    func showPreferences() {
-        NSApplication.sharedApplication().windows.first?.makeKeyAndOrderFront(self)
-        NSApplication.sharedApplication().windows.first?.orderFrontRegardless()
-        NSApplication.sharedApplication().windows.first?.center()
+    @objc func showPreferences() {
+        NSApplication.shared.windows.first?.makeKeyAndOrderFront(self)
+        NSApplication.shared.windows.first?.orderFrontRegardless()
+        NSApplication.shared.windows.first?.center()
     }
     
-    func terminate() {
-        NSApplication.sharedApplication().terminate(self)
+    @objc func terminate() {
+        NSApplication.shared.terminate(self)
     }
     
     func startMonitoring() {
         if screenIsLocked {
-            timer = NSTimer.scheduledTimerWithTimeInterval(timerInterval, target: self, selector: "handleTimer", userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: timerInterval, target: self, selector: #selector(AppDelegate.handleTimer), userInfo: nil, repeats: true)
         } else {
-            timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "handleTimer", userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(AppDelegate.handleTimer), userInfo: nil, repeats: true)
         }
         
     }
     
-    func handleTimer() {
+    @objc func handleTimer() {
         var scriptObject : NSAppleScript?
         
-        dispatch_async(dispatch_queue_create("com.haduyenhoa.service.bluetooth", nil), {
+        DispatchQueue(label: "com.haduyenhoa.service.bluetooth", attributes: []).async(execute: {
             if self.isInRange() {
-                if self.priorStatus == BPStatus.OutRange {
-                    self.priorStatus = BPStatus.InRange
+                if self.priorStatus == BPStatus.outRange {
+                    self.priorStatus = BPStatus.inRange
                 }
-                
-                if (self.screenIsLocked
-                    ) {
-                    var rssi: BluetoothHCIRSSIValue = 127 //valid range: -127 to +20
-                    if self.device != nil { //sur that device is not nil
-                        //try to connect
-                        if self.isCheckingRSSI {
-                            NSLog("Someone is checking the rssi")
-                        } else {
-                            if !(self.device!.isConnected()) {
-                                self.device?.openConnection()
-                            }
-                            
-                            if (self.device!.isConnected()) {
-                                rssi = self.device!.RSSI()
-                                self.device?.closeConnection()
 
-                            }
-                            
-                            NSLog("device rssi \(rssi))")
-                            if (rssi < -3 || rssi > 20) {
-                                NSLog("Bluetooth is not near by my Mac. Do nothing")
-                                self.isCheckingRSSI = false
-                                
-                            } else {
-                                NSLog("Device in Range")
-                                scriptObject = self.getInRangeScript()
-                                self.isCheckingRSSI = false
-                            }
-                        }
+                var rssi: BluetoothHCIRSSIValue = 127 //valid range: -127 to +20
+                if self.device != nil { //sur that device is not nil
+                    //try to connect
+                    if self.isCheckingRSSI {
+                        NSLog("Someone is checking the rssi")
                     } else {
-                        NSLog("Bizzare, cannot get device info")
+                        if !(self.device!.isConnected()) {
+                            self.device?.openConnection()
+                        }
+
+                        if (self.device!.isConnected()) {
+                            rssi = self.device!.rawRSSI()
+                            self.device?.closeConnection()
+                            print("got RSSI: \(rssi)")
+                        }
+
+                        if (self.screenIsLocked && (rssi > -50)
+                            ) {
+                            NSLog("Device in Range")
+                            scriptObject = self.getInRangeScript()
+                        } else if !self.screenIsLocked && (rssi <= -50) {
+                            NSLog("Bluetooth is not near by my Mac. Log out")
+                            scriptObject = self.getOutRangeScript()
+                        } else {
+//                            print("nothing to do")
+                        }
+
+                        self.isCheckingRSSI = false
                     }
+                } else {
+                    NSLog("Bizzare, cannot get device info")
                 }
             } else {
-                if self.priorStatus == BPStatus.InRange {
-                    self.priorStatus = BPStatus.OutRange
+                if self.priorStatus == BPStatus.inRange {
+                    self.priorStatus = BPStatus.outRange
                     
                 }
                 
@@ -225,7 +224,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, CBPeripher
                
             }
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.setMenuIcon(self.priorStatus)
             })
             
@@ -240,11 +239,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, CBPeripher
                 //run
                 var error : NSDictionary?
                 let result = _appleScript.executeAndReturnError(&error)
-                NSLog("execute result: \(result?.debugDescription)")
-                NSLog("execute error: \(error)")
+                NSLog("execute result: \(result.debugDescription)")
+                print("execute error: \(error?.description ?? "")")
+
                 self.isRunningScript = false
             } else {
-                NSLog("Unecessary to launch script")
+//                NSLog("Unecessary to launch script")
             }
 //            
 //            //if monitor is enabled -> re-schedule
@@ -263,30 +263,24 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, CBPeripher
     }
     
     
-    func setMenuIcon(status: BPStatus) {
+    func setMenuIcon(_ status: BPStatus) {
         switch (status) {
-        case .OutRange:
-            statusItem?.image = NSImage(contentsOfFile: NSBundle.mainBundle().pathForResource("outRange", ofType: "png")!)
-            statusItem?.alternateImage = NSImage(contentsOfFile: NSBundle.mainBundle().pathForResource("outRangeAlt", ofType: "png")!)
+        case .outRange:
+            statusItem?.image = NSImage(contentsOfFile: Bundle.main.path(forResource: "outRange", ofType: "png")!)
+            statusItem?.alternateImage = NSImage(contentsOfFile: Bundle.main.path(forResource: "outRangeAlt", ofType: "png")!)
             break
-        case .InRange:
-            statusItem?.image = NSImage(contentsOfFile: NSBundle.mainBundle().pathForResource("inRange", ofType: "png")!)
-            statusItem?.alternateImage = NSImage(contentsOfFile: NSBundle.mainBundle().pathForResource("inRangeAlt", ofType: "png")!)
+        case .inRange:
+            statusItem?.image = NSImage(contentsOfFile: Bundle.main.path(forResource: "inRange", ofType: "png")!)
+            statusItem?.alternateImage = NSImage(contentsOfFile: Bundle.main.path(forResource: "inRangeAlt", ofType: "png")!)
             break
         }
     }
     
     //MARK: NSWindowDelegate
-    func windowWillClose(notification: NSNotification) {
+    func windowWillClose(_ notification: Notification) {
         
         stopMonitoring()
         startMonitoring()
     }
-    
-    //MARK: CBPeripheralManager
-    func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager!) {
-        
-    }
-    
 }
 

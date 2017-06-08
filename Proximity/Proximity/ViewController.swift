@@ -11,12 +11,12 @@ import IOBluetoothUI
 import AppKit
 import Foundation
 
-// Monadic bind for Optionals
-infix operator >>= {associativity left}
-func >>= <A,B> (m: A?, f: A -> B?) -> B? {
-    if let x = m {return f(x)}
-    return .None
-}
+//// Monadic bind for Optionals
+//infix operator >>= {associativity left}
+//func >>= <A,B> (m: A?, f: (A) -> B?) -> B? {
+//    if let x = m {return f(x)}
+//    return .none
+//}
 
 extension Character {
     func utf8() -> UInt8 {
@@ -50,57 +50,55 @@ class ViewController: NSViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        btnCheckConnectivity.enabled = false
-        piCheckingConnectivity.hidden = true
+        btnCheckConnectivity.isEnabled = false
+        piCheckingConnectivity.isHidden = true
         
         loadApplicationStates()
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
-
-        var imageArray = [NSData]()
-        //verify device status
+        //TODO: verify device status
         
     }
     
-    override var representedObject: AnyObject? {
+    override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
         }
     }
 
     func loadApplicationStates() {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let _appDelegate = NSApplication.sharedApplication().delegate as? AppDelegate
+        let defaults = UserDefaults.standard
+        let _appDelegate = NSApplication.shared.delegate as? AppDelegate
         
-        if _appDelegate == nil {125
+        if _appDelegate == nil {
             NSLog("Got error while getting delegate")
             return
         }
        
         //Update device & status
-        if let _deviceData = defaults.objectForKey("pairedDevice") as? NSData{
-            _appDelegate!.device = NSKeyedUnarchiver.unarchiveObjectWithData(_deviceData) as? IOBluetoothDevice
+        if let _deviceData = defaults.object(forKey: "pairedDevice") as? Data{
+            _appDelegate!.device = NSKeyedUnarchiver.unarchiveObject(with: _deviceData) as? IOBluetoothDevice
             
             if let _bluetoothDevice = _appDelegate!.device {
                 lblDeviceName.stringValue = "\(_bluetoothDevice.name)  \(_bluetoothDevice.addressString)"
-                lblDeviceName.textColor = NSColor.blackColor()
+                lblDeviceName.textColor = NSColor.black
                 
                 //enable check
-                btnCheckConnectivity.enabled = true
+                btnCheckConnectivity.isEnabled = true
             }
         }
         
-        dispatch_async(dispatch_queue_create("com.haduyenhoa.service.bluetooth", nil), {
+        DispatchQueue(label: "com.haduyenhoa.service.bluetooth", attributes: []).async(execute: {
             //update status bar
             if _appDelegate!.isInRange() {
-                _appDelegate!.priorStatus = .InRange
+                _appDelegate!.priorStatus = .inRange
             } else {
-                _appDelegate!.priorStatus = .OutRange
+                _appDelegate!.priorStatus = .outRange
             }
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 _appDelegate!.setMenuIcon(_appDelegate!.priorStatus)
             })
             
@@ -108,38 +106,39 @@ class ViewController: NSViewController {
         
         
         //timer interval
-        var timerInterval = defaults.doubleForKey("timerInterval")
+        var timerInterval = defaults.double(forKey: "timerInterval")
         if timerInterval <= 0 || timerInterval > 120 {
             timerInterval = 60 //reset timer interval
             //update NSuserdefault
-            defaults.setDouble(timerInterval, forKey: "timerInterval")
+            defaults.set(timerInterval, forKey: "timerInterval")
         }
         
         _appDelegate?.timerInterval = timerInterval
         tfScheduleInterval.stringValue = "\(timerInterval)"
         
         //Enable
-        let enableMonitoring = defaults.boolForKey("enableMonitor")
+        let enableMonitoring = defaults.bool(forKey: "enableMonitor")
         if enableMonitoring {
-            cbEnableMonitoring.state = NSOnState
+            cbEnableMonitoring.state = NSControl.StateValue.onState
             
             //start monitoring
             _appDelegate!.startMonitoring()
         } else {
-            cbEnableMonitoring.state = NSOffState
+            cbEnableMonitoring.state = NSControl.StateValue.offState
             _appDelegate!.stopMonitoring()
         }
         
         //Run on start up
-        let runOnStartup = defaults.boolForKey("runOnStartup")
-        cbRunOnStartup.state = runOnStartup ? NSOnState : NSOffState
+        let runOnStartup = defaults.bool(forKey: "runOnStartup")
+        cbRunOnStartup.state = runOnStartup ? NSControl.StateValue.onState : NSControl.StateValue.offState
         
         //user name
-        var username: String? = defaults.stringForKey("username") ?? ""
-        var password : String? = defaults.stringForKey("password") ?? ""
-        
-        username = username.map(encryptKey(CRYPT_KEY)) ?? ""
-        password = password.map(encryptKey(CRYPT_KEY)) ?? ""
+        let username: String? = defaults.string(forKey: "username") ?? ""
+        let password : String? = defaults.string(forKey: "password") ?? ""
+
+        //TODO: crypt username + password
+//        username = username.map(encryptKey(CRYPT_KEY, <#String#>)) ?? ""
+//        password = password.map(encryptKey(CRYPT_KEY, <#String#>)) ?? ""
 //        let encryptedMessage = encryptKey(CRYPT_KEY)(message: username!)
         
 
@@ -151,34 +150,35 @@ class ViewController: NSViewController {
         _appDelegate!.password = password ?? ""; //defaults.stringForKey("password") ?? ""
     }
     
-    @IBAction func saveSettings(sender: AnyObject) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let _appDelegate = NSApplication.sharedApplication().delegate as? AppDelegate
+    @IBAction func saveSettings(_ sender: AnyObject) {
+        let defaults = UserDefaults.standard
+        let _appDelegate = NSApplication.shared.delegate as? AppDelegate
         
         if _appDelegate == nil {
             NSLog("Got error while getting delegate")
             return
         }
         
-        defaults.setDouble(tfScheduleInterval.doubleValue, forKey: "timerInterval")
+        defaults.set(tfScheduleInterval.doubleValue, forKey: "timerInterval")
         
-        defaults.setBool(cbEnableMonitoring.state == NSOnState, forKey: "enableMonitor")
-        defaults.setBool(cbRunOnStartup.state == NSOnState, forKey: "runOnStartup")
+        defaults.set(cbEnableMonitoring.state == NSControl.StateValue.onState, forKey: "enableMonitor")
+        defaults.set(cbRunOnStartup.state == NSControl.StateValue.onState, forKey: "runOnStartup")
         
-        var username : String?  = tfUsername.stringValue ?? ""
-        var password : String? = tfPassword.stringValue ?? ""
-        
-        let encryptedUsername = encryptKey(CRYPT_KEY)(message: username!)
-        let encryptedPassword = encryptKey(CRYPT_KEY)(message: password!)
-        
-        defaults.setObject(encryptedUsername, forKey: "username")
-        defaults.setObject(encryptedPassword, forKey: "password")
+        let username : String?  = tfUsername.stringValue
+        let password : String? = tfPassword.stringValue
+
+        //TODO: encrypt username + password
+//        let encryptedUsername = encryptKey(CRYPT_KEY, <#String#>)(username!)
+//        let encryptedPassword = encryptKey(CRYPT_KEY, <#String#>)(password!)
+
+        defaults.set(username, forKey: "username")
+        defaults.set(password, forKey: "password")
         defaults.synchronize()
         
-        _appDelegate!.username = tfUsername.stringValue ?? ""
-        _appDelegate!.password = tfPassword.stringValue ?? ""
+        _appDelegate!.username = tfUsername.stringValue
+        _appDelegate!.password = tfPassword.stringValue 
         
-        if cbEnableMonitoring.state == NSOnState {
+        if cbEnableMonitoring.state == NSControl.StateValue.onState {
             NSLog("Restart monitoring")
             _appDelegate!.stopMonitoring()
             _appDelegate!.startMonitoring()
@@ -190,8 +190,8 @@ class ViewController: NSViewController {
     }
     
     
-    @IBAction func showPassword(sender: AnyObject) {
-        let onState = (sender as NSButton).state == NSOnState
+    @IBAction func showPassword(_ sender: AnyObject) {
+        let onState = (sender as! NSButton).state == NSControl.StateValue.onState
         
         if onState {
             //TODO: replace NSSecureTextField by NSTextField
@@ -199,14 +199,14 @@ class ViewController: NSViewController {
     }
     
     
-    @IBAction func timerIntervalChanged(sender: AnyObject) {
+    @IBAction func timerIntervalChanged(_ sender: AnyObject) {
     }
 
-    @IBAction func enableMonitoringChanged(sender: AnyObject) {
+    @IBAction func enableMonitoringChanged(_ sender: AnyObject) {
     }
     
-    @IBAction func changeDevice(sender: AnyObject) {
-        let _appDelegate = NSApplication.sharedApplication().delegate as? AppDelegate
+    @IBAction func changeDevice(_ sender: AnyObject) {
+        let _appDelegate = NSApplication.shared.delegate as? AppDelegate
         
         if _appDelegate == nil {
             NSLog("Got error while getting delegate")
@@ -215,42 +215,42 @@ class ViewController: NSViewController {
         
         let deviceSelector = IOBluetoothDeviceSelectorController.deviceSelector()
 
-        deviceSelector.runModal()
+        deviceSelector?.runModal()
         
         //get device
-        var results = deviceSelector.getResults()
-        if results == nil || results.count == 0 {
+        var results = deviceSelector?.getResults()
+        if results == nil || results?.count == 0 {
             NSLog("User has cancel or did not selecte any thing")
             return
         }
         
-        if let _device = results[0] as? IOBluetoothDevice{
+        if let _device = results?[0] as? IOBluetoothDevice{
             //save to NSUSerdaults
-            let defaults = NSUserDefaults.standardUserDefaults()
-            let data = NSKeyedArchiver.archivedDataWithRootObject(_device)
-            defaults.setObject(data, forKey: "pairedDevice")
+            let defaults = UserDefaults.standard
+            let data = NSKeyedArchiver.archivedData(withRootObject: _device)
+            defaults.set(data, forKey: "pairedDevice")
             
             
              _appDelegate!.device = _device
 
             lblDeviceName.stringValue = "\(_device.name)  \(_device.addressString)"
-            lblDeviceName.textColor = NSColor.blackColor()
+            lblDeviceName.textColor = NSColor.black
             
             //enable check
-            btnCheckConnectivity.enabled = true
+            btnCheckConnectivity.isEnabled = true
         } else {
             if (_appDelegate!.device == nil) {
-                lblDeviceName.textColor = NSColor.redColor()
+                lblDeviceName.textColor = NSColor.red
                 
             }
         }
         
     }
 
-    @IBAction func checkConnectivity(sender: AnyObject) {
+    @IBAction func checkConnectivity(_ sender: AnyObject) {
         
-    dispatch_async(dispatch_queue_create("com.haduyenhoa.service.bluetooth", nil), {
-        let _appDelegate = NSApplication.sharedApplication().delegate as? AppDelegate
+    DispatchQueue(label: "com.haduyenhoa.service.bluetooth", attributes: []).async(execute: {
+        let _appDelegate = NSApplication.shared.delegate as? AppDelegate
         
         if _appDelegate == nil {
             NSLog("Got error while getting delegate")
@@ -263,47 +263,49 @@ class ViewController: NSViewController {
         }
         
         //start animation
-        dispatch_async(dispatch_get_main_queue(), {
-            self.piCheckingConnectivity.hidden = false
+        DispatchQueue.main.async(execute: {
+            self.piCheckingConnectivity.isHidden = false
             self.piCheckingConnectivity.startAnimation(nil)
         })
        
         
         if (_appDelegate!.isInRange()) {
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.piCheckingConnectivity.stopAnimation(nil)
                  NSLog("Connection to this bluetooth device is OK")
-                _appDelegate!.setMenuIcon(BPStatus.InRange)
+                _appDelegate!.setMenuIcon(BPStatus.inRange)
             })
             
         } else {
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.piCheckingConnectivity.stopAnimation(nil)
                 
                 //show error
                 NSLog("Got error while connecting to device")
                 
-                _appDelegate!.setMenuIcon(BPStatus.OutRange)
+                _appDelegate!.setMenuIcon(BPStatus.outRange)
             })
             
         }
-        dispatch_async(dispatch_get_main_queue(), {
-            self.piCheckingConnectivity.hidden = true
+        DispatchQueue.main.async(execute: {
+            self.piCheckingConnectivity.isHidden = true
         })
         
         
         })
     }
-    
+
+    /*
     //MARK: cryptographie
-    func encrypt(key:Character, c:Character) -> String? {
+    func encrypt(_ key:Character, c:Character) -> String? {
         let byte = [key.utf8() ^ c.utf8()]
-        return String(bytes: byte, encoding: NSUTF8StringEncoding)
+        return String(bytes: byte, encoding: String.Encoding.utf8)
     }
     
     // Curried func for convenient use with map
-    func encryptKey(key:String)(message:String) -> String? {
+    func encryptKey(_ key:String, _ message:String) -> String? {
         return reduce(Zip2(key, message), Optional("")) { str, c in str >>= { s in self.encrypt(c).map {s + $0} }}
     }
+   */
 }
 
