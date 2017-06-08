@@ -14,6 +14,7 @@ protocol LEBluetoothManagerDelegate {
     func servicesUpdated(_ peripheral : CBPeripheral!)
 }
 
+//This class is for another purpose, not for autolock
 class LEBluetoothManager : NSObject {
     private static let share = LEBluetoothManager()
 
@@ -77,10 +78,6 @@ extension LEBluetoothManager : CBCentralManagerDelegate {
         if (isConnectable) {
             self.bluetoothManager?.connect(currentCBPeripheral!, options: nil)
         }
-    }
-
-    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {

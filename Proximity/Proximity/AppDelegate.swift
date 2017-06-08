@@ -100,36 +100,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         
         let scriptObject = NSAppleScript(source:
             "on run\n"
-//            + "tell application \"System Events\"\n"
-//            + "tell process \"Finder\"\n"
-//            + "key space\n"
-//            + "end tell\n"
-//            + "end tell\n"
-            +
-                "tell application \"/System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app\" to quit\n"
-//            + "tell application \"System Events\" to key code 53\n"
-
+            + "tell application \"/System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app\" to quit\n"
             + "delay 4.0\n"
             + "tell application \"System Events\" to keystroke \"" + (password) + "\"\n"
             + "delay 0.5\n"
             + "tell application \"System Events\" to keystroke return\n"
             + "end run\n"
-
-            
-                /*
-            // got error: System Events got an error: Proximity is not allowed assistive access
-            
-            + "tell application \"System Events\" to tell process \"loginwindow\" to entire contents\n"
-            + "tell application \"System Events\" to tell process \"loginwindow\"\n"
-            + "tell window \"Login Panel\"\n"
-            + "if name of static text 1 is \""+username+"\" then\n"
-            + "set value of text field 1 to \""+password+"\"\n"
-            + "keystroke return\n"
-            + "end if\n"
-            + "end tell\n"
-            + "end tell\n"
-            + "end run\n"
-*/
         )
         
         return scriptObject!
@@ -137,11 +113,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     
     func getOutRangeScript() -> NSAppleScript {
         //put pac to sleep without any thing
-//        let pmsetTask = NSTask()
-//        pmsetTask.launchPath = "/usr/bin/pmset"
-//        pmsetTask.arguments = ["sleepnow"]
-//        pmsetTask.launch()
-        
+
         let scriptObject = NSAppleScript(source:
             "on run \ntell application \"System Events\" \n" +
             "start current screen saver \n" +
@@ -210,33 +182,30 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
                         self.isCheckingRSSI = false
                     }
                 } else {
-                    NSLog("Bizzare, cannot get device info")
+                    NSLog("Strange, cannot get device info")
                 }
             } else {
                 if self.priorStatus == BPStatus.inRange {
                     self.priorStatus = BPStatus.outRange
-                    
                 }
                 
                 if (!self.screenIsLocked) {
                      NSLog("Device Out of range")
                     scriptObject = self.getOutRangeScript()
                 }
-               
             }
             
             DispatchQueue.main.async(execute: {
                 self.setMenuIcon(self.priorStatus)
             })
-            
-            
-//            return //do nothing
-            
+
             if let _appleScript = scriptObject {
-//                if self.isRunningScript {
-//                    return
-//                }
+                if self.isRunningScript {
+                    return
+                }
+
                 self.isRunningScript = true
+
                 //run
                 var error : NSDictionary?
                 let result = _appleScript.executeAndReturnError(&error)
@@ -247,13 +216,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
             } else {
 //                NSLog("Unecessary to launch script")
             }
-//            
-//            //if monitor is enabled -> re-schedule
-//            let defaults = NSUserDefaults.standardUserDefaults()
-//            
-//            if defaults.boolForKey("enableMonitor") {
-//                self.startMonitoring()
-//            }
         })
     }
     
